@@ -130,20 +130,29 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
-
         // --- Aplicar velocidad al Rigidbody2D ---
         rb.velocity = velocity;
 
         //----------------- SHOOT ---------------------
-        if (Input.GetKey(KeyCode.Space))   
+        if (Input.GetKey(KeyCode.K))   
         {
             if (currentGunDelay == 0)
             {
-                gun.Shoot();
+                Debug.Log("You pressed K and gunDelay is 0");
+                gun.ShootPrimary();
                 currentGunDelay = gunDelay;
             }
         }
+        if (Input.GetKey(KeyCode.L))
+        {
+            if (currentGunDelay == 0)
+            {
+                Debug.Log("You pressed L and gunDelay is 0");
+                gun.ShootSecondary();
+                currentGunDelay = gunDelay;
+            }
+        }
+
 
 
 

@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &307665609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519821870}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfe64eba8c9c784408630b1735e0ce20, type: 3}
   m_Name: 
@@ -2839,6 +2839,10 @@ PrefabInstance:
       propertyPath: shootSFX
       value: 
       objectReference: {fileID: 8300000, guid: 4e3fda44a9531f94caeac365a61be9f3, type: 3}
+    - target: {fileID: 3818798373624069329, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: secondaryBullet
+      value: 
+      objectReference: {fileID: 5113556006457154489, guid: c01085e8a3bc26c4c90fe5c56bb6c3ca, type: 3}
     - target: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_IsTrigger
       value: 0
