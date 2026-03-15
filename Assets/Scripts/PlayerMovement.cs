@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.UI;
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public float primaryGunDelay = 0.2f;
     public float secondaryGunDelay = 1.0f;
     float currentGunDelay = 0.0f;
+    public Image primaryFillBar;
+    private float currentCooldownDuration; //Primary or secondary gun delay
 
 
     public GameObject hurt;
@@ -33,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip respawnSFX;
     public AudioClip explosionSFX;
     public AudioClip thrustSFX;
+
 
 
     void Start()
@@ -44,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
         velocity = Vector2.zero;
         StartCoroutine(HurtAnimation());
+
+        primaryFillBar.fillAmount = 1;
+        
+
+
+
     }
 
     void Update()
@@ -51,6 +62,19 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             toggleGodMode();
+        }
+
+        if (currentGunDelay > 0f)
+        {
+            if (primaryFillBar != null)
+            {
+                float progress = 1f - currentGunDelay / currentCooldownDuration; //Percentage based on primary or secondary gun delay
+                primaryFillBar.fillAmount = progress;
+            }
+        }
+        else
+        {
+            if (primaryFillBar != null) primaryFillBar.fillAmount = 1f;
         }
 
     }
@@ -136,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("You pressed K and gunDelay is 0");
                 gun.ShootPrimary();
                 currentGunDelay = primaryGunDelay;
+                currentCooldownDuration = primaryGunDelay;
             }
         }
         if (Input.GetKey(KeyCode.L))
@@ -145,12 +170,9 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("You pressed L and gunDelay is 0");
                 gun.ShootSecondary();
                 currentGunDelay = secondaryGunDelay;
+                currentCooldownDuration = secondaryGunDelay;
             }
         }
-
-
-
-
     }
 
     private void toggleGodMode()
@@ -215,6 +237,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 2f);
+    }
+
+    void fillCooldownBar(float amount)
+    {
+        primaryFillBar.fillAmount += amount;
+    
     }
 
 

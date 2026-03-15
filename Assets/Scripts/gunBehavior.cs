@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gunBehavior : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class gunBehavior : MonoBehaviour
     void Start()
     {
         tf = transform;
+
     }
 
     // Update is called once per frame
