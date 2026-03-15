@@ -10,7 +10,7 @@ public class secondaryBulletBehavior : MonoBehaviour
     void Start()
     {
 
-        Destroy(this.gameObject, ttl);
+        Destroy(gameObject, ttl);
     }
 
     // Update is called once per frame
@@ -31,7 +31,9 @@ public class secondaryBulletBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Asteroid"))
         {
+            Debug.Log("Bullet destroyed");
             Destroy(gameObject);
+
         }
     }
 }

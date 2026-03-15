@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         lives = 3;
         scorePassiveIncrement = 1;
         incrementCooldown = 0f;
-        if (scoreText != null) scoreText.text = "<sketchy>" +score.ToString();
+        if (scoreText != null) scoreText.text = "<sketchy>" + score.ToString();
         passiveIncrementText.text = "<sketchy>+" + scorePassiveIncrement.ToString();
         difficultyLevel = Difficulty.Easy;
 

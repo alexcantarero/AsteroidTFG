@@ -19,6 +19,8 @@ public class asteroidBehavior : MonoBehaviour
     public GameObject[] subAsteroids;
 
     public AudioClip explosionSFX;
+
+    private bool bulletHasCollided;
     void Start()
     {
         
@@ -47,6 +49,8 @@ public class asteroidBehavior : MonoBehaviour
 
         parts = explosion.GetComponent<ParticleSystem>();
 
+        bulletHasCollided = false;
+
 
 
     }
@@ -59,8 +63,9 @@ public class asteroidBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") && !bulletHasCollided)
         {
+            bulletHasCollided = true;
             //División
             if (name == "big(Clone)" || name == "medium(Clone)")
             {
@@ -70,6 +75,7 @@ public class asteroidBehavior : MonoBehaviour
             }
             //Puntaje
             GameManager.Instance.GetComponent<GameManager>().addPoints(name);
+            Debug.Log("Added points");
             explosionEffect();
             
 
