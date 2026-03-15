@@ -10,14 +10,12 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject gameManager;
     Rigidbody2D rb;
-    BoxCollider2D box;
     Transform tf;
-    SpriteRenderer sr;
     Animator anim;
 
     Vector2 velocity;
 
-    // parámetros expuestos
+    // Parámetros expuestos
     public float acceleration = 6f;     
     public float deceleration = 8f;     
     public float maxSpeed = 6f;         
@@ -25,8 +23,10 @@ public class PlayerMovement : MonoBehaviour
     public bool invincible = false;
 
     gunBehavior gun;
-    public float gunDelay = 0.2f;
+    public float primaryGunDelay = 0.2f;
+    public float secondaryGunDelay = 1.0f;
     float currentGunDelay = 0.0f;
+
 
     public GameObject hurt;
 
@@ -34,21 +34,16 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip explosionSFX;
     public AudioClip thrustSFX;
 
-    private bool isPlaying;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        box = GetComponent<BoxCollider2D>();
         tf = transform;
         gun = GetComponentInChildren<gunBehavior>();
-        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
         velocity = Vector2.zero;
         StartCoroutine(HurtAnimation());
-
-        isPlaying = false;
     }
 
     void Update()
@@ -140,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("You pressed K and gunDelay is 0");
                 gun.ShootPrimary();
-                currentGunDelay = gunDelay;
+                currentGunDelay = primaryGunDelay;
             }
         }
         if (Input.GetKey(KeyCode.L))
@@ -149,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("You pressed L and gunDelay is 0");
                 gun.ShootSecondary();
-                currentGunDelay = gunDelay;
+                currentGunDelay = secondaryGunDelay;
             }
         }
 
@@ -161,10 +156,10 @@ public class PlayerMovement : MonoBehaviour
     private void toggleGodMode()
     {
         invincible = !invincible;
-        if (invincible) gunDelay = 0.05f;
-        else gunDelay = 0.2f;
+        if (invincible) primaryGunDelay = secondaryGunDelay = 0.05f;
+        else { primaryGunDelay = 0.2f; secondaryGunDelay = 1.0f; }
 
-            Debug.Log("God mode set to " + invincible);
+        Debug.Log("God mode set to " + invincible);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
