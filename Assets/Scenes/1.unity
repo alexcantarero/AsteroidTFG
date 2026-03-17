@@ -1618,15 +1618,15 @@ MonoBehaviour:
     VectorObservationSize: 6
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 2
-      BranchSizes: 
-    VectorActionSize: 02000000
+      m_NumContinuousActions: 0
+      BranchSizes: 020000000300000003000000
+    VectorActionSize: 020000000300000003000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
+    VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: testingAgent
   TeamId: 0
   m_UseChildSensors: 1
@@ -4994,10 +4994,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 519821876}
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 519821881}
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: -1
