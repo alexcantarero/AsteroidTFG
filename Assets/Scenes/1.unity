@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519821870}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfe64eba8c9c784408630b1735e0ce20, type: 3}
   m_Name: 
@@ -1600,8 +1600,13 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 4000
   targetTransform: {fileID: 307665610}
+  acceleration: 6
+  rotationSpeed: 180
+  maxSpeed: 6
+  primaryGunDelay: 0.2
+  secondaryGunDelay: 1
 --- !u!114 &519821883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4955,6 +4960,10 @@ PrefabInstance:
     - target: {fileID: 7643321954453422131, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: gunDelay
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643321954453422131, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7643321954453422131, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: thrustSFX

@@ -111,10 +111,8 @@ public class PlayerMovement : MonoBehaviour
         if (turningLeft) rotationDelta = rotationSpeed * Time.fixedDeltaTime;
         else if (turningRight) rotationDelta = -rotationSpeed * Time.fixedDeltaTime;
 
-        if (rotationDelta != 0f)
-        {
-            rb.MoveRotation(rb.rotation + rotationDelta);
-        }
+        if (rotationDelta != 0f) transform.Rotate(0f,0f, rotationDelta);
+        
 
         // --- Determinar dirección "forward" según la opción ---
         Vector2 forward = (Vector2)tf.up;
