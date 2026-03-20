@@ -1603,10 +1603,12 @@ MonoBehaviour:
   MaxStep: 4000
   targetTransform: {fileID: 307665610}
   acceleration: 6
+  deceleration: 8
   rotationSpeed: 180
   maxSpeed: 6
   primaryGunDelay: 0.2
   secondaryGunDelay: 1
+  thrustSFX: {fileID: 8300000, guid: 8f257738a0568924f85b0428f0a2b4eb, type: 3}
 --- !u!114 &519821883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,6 +4204,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 988524291}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: respawnSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b87869d6189373645a5bd3c9761af319, type: 3}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: cameraShake
       value: 
