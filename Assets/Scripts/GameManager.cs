@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int lives;
     public int score;
 
+    public AudioClip respawnSFX;
+
     public float timeWithoutGettingHit;
     private float incrementCooldown;
     public int scorePassiveIncrement;
@@ -123,6 +125,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.7f);
         player.SetActive(true);
         player.GetComponent<PlayerMovement>().respawn();
+        SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
+
     }
 
     void Update()

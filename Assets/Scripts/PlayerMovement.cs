@@ -178,8 +178,7 @@ public class PlayerMovement : MonoBehaviour
         invincible = !invincible;
         if (invincible) primaryGunDelay = secondaryGunDelay = 0.05f;
         else { primaryGunDelay = 0.2f; secondaryGunDelay = 1.0f; }
-
-        Debug.Log("God mode set to " + invincible);
+        Debug.Log("God mode set to " + invincible); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

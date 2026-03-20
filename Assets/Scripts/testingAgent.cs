@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting;
 
 public class testingAgent : Agent {
 
@@ -18,27 +19,32 @@ public class testingAgent : Agent {
 
     [Header("Parámetros")]
     [SerializeField] private float acceleration = 6f;
+    [SerializeField] private float deceleration = 8f;
     [SerializeField] private float rotationSpeed = 180f;
     [SerializeField] private float maxSpeed = 6f;
     [SerializeField] private float primaryGunDelay = 0.2f;
     [SerializeField] private float secondaryGunDelay = 1.0f;
-
-
+    [SerializeField] private AudioClip thrustSFX;
 
     Rigidbody2D rb;
+    Animator anim;
     private gunBehavior gun;
     private float currentGunDelay = 0f;
+    private Vector2 velocity;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         gun = GetComponentInChildren<gunBehavior>();
-    }
+        anim = GetComponent<Animator>();
 
+        velocity = Vector2.zero;
+    }
     public override void OnEpisodeBegin() //Función que se ejecuta una vez empieza un episodio.
     {
         transform.position = Vector3.zero; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
+        velocity = Vector2.zero;
     }
 
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
@@ -62,17 +68,39 @@ public class testingAgent : Agent {
         int moveAction = actions.DiscreteActions[0]; //Propulsión
         if (moveAction == 1)
         {
+
+            if (SFXManager.instance != null && !SFXManager.instance.IsLooping)
+            {
+                SFXManager.instance.PlayLoopingSFX(thrustSFX, 0.125f);
+            }
+
             if (rb != null) //Si el rigidbody se ha asignado correctamente
             {
-                Vector2 force = (Vector2)transform.up * acceleration; //Fuerza: dirección * aceleración
+                velocity += (Vector2)transform.up * (acceleration * Time.fixedDeltaTime); //Aplicamos la fuerza proporcionalmente con el 
+                if (velocity.magnitude > maxSpeed) velocity = velocity.normalized * maxSpeed; //Limitamos la velocidad si se pasa de la máxima
+                anim.SetBool("propelling", true);
+            }
+        }
+        else //No se está acelerando
+        {
 
-                rb.velocity += force * Time.deltaTime; //Aplicamos la fuerza proporcionalmente con el tiempo
-                if (rb.velocity.magnitude > maxSpeed) //Limitamos la velocidad
-                    rb.velocity = rb.velocity.normalized * maxSpeed;
+            if (SFXManager.instance != null && SFXManager.instance.IsLooping)
+            {
+                SFXManager.instance.StopLoopingSFX();
+            }
+
+            anim.SetBool("propelling", false);
+            float speed = velocity.magnitude;
+            if (speed > 0f) //Si aún la nave está en movimiento
+            {
+                float newSpeed = speed - (deceleration * Time.fixedDeltaTime); // v = a*t. A mayor tiempo, más frenará.
+                if (newSpeed <= 0f) velocity = Vector2.zero; //Si la velocidad es negativa, la limitamos a cero.
+                else velocity = velocity.normalized * newSpeed; // Si no, aplicamos la nueva velocidad. 
             }
         }
 
-        
+        rb.velocity = velocity;
+
         int rotateAction = actions.DiscreteActions[1]; //Rotación
         if (rotateAction == 1)
         {
