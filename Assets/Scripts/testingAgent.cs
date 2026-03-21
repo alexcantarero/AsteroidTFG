@@ -45,6 +45,7 @@ public class testingAgent : Agent {
     {
         transform.position = Vector3.zero; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
         velocity = Vector2.zero;
+        targetTransform.position = new Vector3(Random.Range(-8,8), Random.Range(-4,4), 0);
     }
 
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
@@ -168,6 +169,12 @@ public class testingAgent : Agent {
             SetReward(1f);
             EndEpisode(); //Episode ends. Let's restart the game.
 
+        }
+
+        if (collision.CompareTag("Limit"))
+        {
+            SetReward(-0.5f);
+            EndEpisode(); //Episode ends. Let's restart the game.
         }
 
     }

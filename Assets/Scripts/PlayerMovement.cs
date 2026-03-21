@@ -221,13 +221,11 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator HurtAnimation() 
     {
-
         anim.SetBool("isHurt", true);
         invincible = true;
         yield return new WaitForSeconds(1f);
         anim.SetBool("isHurt", false);
         invincible = false;
-
     }
 
     void OnDrawGizmos()
