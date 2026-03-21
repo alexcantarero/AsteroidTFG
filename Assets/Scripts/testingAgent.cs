@@ -65,14 +65,21 @@ public class testingAgent : Agent {
 
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
     {
-        //En este caso, nos interesan dos: la posición de la nave y la posición del target. 
-        sensor.AddObservation(transform.position.x); //3 floats (x,y,z)
-        sensor.AddObservation(transform.position.y);
-        sensor.AddObservation(transform.position.z);
-        sensor.AddObservation(targetTransform.position.x); //3 floats de nuevo (x,y,z)
-        sensor.AddObservation(targetTransform.position.y);
-        sensor.AddObservation(targetTransform.position.z);
-        //Por esto necesitamos un vector de observaciones (space size) de 6, para almacenar estas seis variables.
+
+
+        sensor.AddObservation((Vector2)transform.up); // Dirección recta de la nave. (2)
+        sensor.AddObservation(Vector2.Distance(transform.position, targetTransform.position)); //Distancia entre la nave y el target (1)
+        sensor.AddObservation((Vector2)(targetTransform.position - transform.position).normalized); //Dirección entre la nave y el target (2)
+
+        Debug.Log((Vector2)(targetTransform.position - transform.position).normalized);
+        ////En este caso, nos interesan dos: la posición de la nave y la posición del target. 
+        //sensor.AddObservation(transform.position.x); //3 floats (x,y,z)
+        //sensor.AddObservation(transform.position.y);
+        //sensor.AddObservation(transform.position.z);
+        //sensor.AddObservation(targetTransform.position.x); //3 floats de nuevo (x,y,z)
+        //sensor.AddObservation(targetTransform.position.y);
+        //sensor.AddObservation(targetTransform.position.z);
+        ////Por esto necesitamos un vector de observaciones (space size) de 6, para almacenar estas seis variables.
     }
 
     public override void OnActionReceived(ActionBuffers actions)
