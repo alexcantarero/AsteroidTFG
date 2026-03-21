@@ -104,6 +104,7 @@ MonoBehaviour:
   - {fileID: 8389914587406565418, guid: 8ad9bf5cf0986224da37d821d5da994e, type: 3}
   - {fileID: 8389914587406565418, guid: 8ad9bf5cf0986224da37d821d5da994e, type: 3}
   explosionSFX: {fileID: 8300000, guid: 6988c1f090469d44ebc4c94e1391443b, type: 3}
+  GameManager: {fileID: 3001478748629854291, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
 --- !u!58 &8868949458292918306
 CircleCollider2D:
   m_ObjectHideFlags: 0

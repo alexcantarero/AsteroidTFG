@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip explosionSFX;
     public AudioClip thrustSFX;
 
+    private Vector3 initialPlayerPosition;
+
 
 
     void Start()
@@ -51,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(HurtAnimation());
 
         primaryFillBar.fillAmount = 1;
+        initialPlayerPosition = transform.position;
+        Debug.Log("initialPlayerPosition set to" +  initialPlayerPosition);
         
 
 
@@ -183,9 +187,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (!enabled) return;
         if (collision.gameObject.CompareTag("Asteroid") && !invincible)
         {
+            //Debug.Log("Hola");
             if (gameManager.GetComponent<GameManager>().lives == 1) SceneManager.LoadScene("1");
             gameManager.GetComponent<GameManager>().getHurt();
             HurtParticles();
@@ -212,8 +217,8 @@ public class PlayerMovement : MonoBehaviour
             rb.angularVelocity = 0f;         
             rb.rotation = 0f;                
         }
-
-        transform.position = Vector3.zero;
+        Debug.Log(initialPlayerPosition);
+        transform.position = initialPlayerPosition;
         transform.rotation = Quaternion.identity;
 
         StartCoroutine(HurtAnimation());

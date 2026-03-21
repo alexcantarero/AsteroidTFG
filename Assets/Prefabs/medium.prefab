@@ -139,6 +139,7 @@ MonoBehaviour:
   - {fileID: 7543207518019125533, guid: 64e23768607d4774eb3fd8a18655e3fc, type: 3}
   - {fileID: 7543207518019125533, guid: 64e23768607d4774eb3fd8a18655e3fc, type: 3}
   explosionSFX: {fileID: 8300000, guid: 6988c1f090469d44ebc4c94e1391443b, type: 3}
+  GameManager: {fileID: 3001478748629854291, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
 --- !u!50 &2035421993585907686
 Rigidbody2D:
   serializedVersion: 4

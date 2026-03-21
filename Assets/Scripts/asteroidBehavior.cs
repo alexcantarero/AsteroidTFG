@@ -21,6 +21,8 @@ public class asteroidBehavior : MonoBehaviour
     public AudioClip explosionSFX;
 
     private bool bulletHasCollided;
+
+    [SerializeField] private GameObject GameManager;
     void Start()
     {
         
@@ -73,7 +75,7 @@ public class asteroidBehavior : MonoBehaviour
                 Instantiate(subAsteroids[1], gameObject.transform.position, Quaternion.identity);
             }
             //Puntaje
-            GameManager.Instance.GetComponent<GameManager>().addPoints(name);
+            GameManager.GetComponent<GameManager>().addPoints(name);
             Debug.Log("Added points");
             explosionEffect();
             

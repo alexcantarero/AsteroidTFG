@@ -5,10 +5,10 @@ using TMPEffects;
 using UnityEngine;
 using TMPEffects.TMPAnimations;
 using TMPEffects.Components;
+using Unity.MLAgents.Policies;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
     //public GameObject[] spritesHearts;
     public GameObject player;
     public TMP_Text scoreText;
@@ -33,14 +33,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     void Start()
@@ -106,12 +98,12 @@ public class GameManager : MonoBehaviour
 
     public void getHurt()
     {
-        if (lives > 0)
-        {
+        //if (lives > 0)
+        //{
             lives -= 1;
-            hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
-            if (lives > 0) StartCoroutine(DieCoroutine());
-        }
+            if (lives > 0 ) hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
+            /*if (lives > 0)*/ StartCoroutine(DieCoroutine());
+        //}
         scorePassiveIncrement = 1;
         timeWithoutGettingHit = 0;
     }
@@ -124,10 +116,13 @@ public class GameManager : MonoBehaviour
         cameraShake.shake = false;
         yield return new WaitForSeconds(1.7f);
         player.SetActive(true);
-        player.GetComponent<PlayerMovement>().respawn();
+        if (player.GetComponent<PlayerMovement>().enabled) player.GetComponent<PlayerMovement>().respawn();
+        else if (player.GetComponent<testingAgent>().enabled) player.GetComponent<testingAgent>().Respawn();
         SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
 
     }
+
+
 
     void Update()
     {

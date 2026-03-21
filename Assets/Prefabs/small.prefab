@@ -137,6 +137,7 @@ MonoBehaviour:
   explosion: {fileID: 1226031520979461127, guid: 9c692d73cd82e0d409bec909e987a5b8, type: 3}
   subAsteroids: []
   explosionSFX: {fileID: 8300000, guid: 6988c1f090469d44ebc4c94e1391443b, type: 3}
+  GameManager: {fileID: 3001478748629854291, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
 --- !u!50 &5650301907206857874
 Rigidbody2D:
   serializedVersion: 4

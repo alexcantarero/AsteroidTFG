@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class testingAgent : Agent {
 
@@ -16,6 +17,12 @@ public class testingAgent : Agent {
 
     [Header("Referencias")]
     [SerializeField] private Transform targetTransform; //Un target para probar que se mueve hacia allí y que aprende. 
+    [SerializeField] private GameObject gameManager;
+    [SerializeField] private AudioClip thrustSFX;
+    [SerializeField] private AudioClip respawnSFX;
+    [SerializeField] private AudioClip explosionSFX;
+
+
 
     [Header("Parámetros")]
     [SerializeField] private float acceleration = 6f;
@@ -24,13 +31,19 @@ public class testingAgent : Agent {
     [SerializeField] private float maxSpeed = 6f;
     [SerializeField] private float primaryGunDelay = 0.2f;
     [SerializeField] private float secondaryGunDelay = 1.0f;
-    [SerializeField] private AudioClip thrustSFX;
+    [SerializeField] private GameObject hurt;
+    [SerializeField] private bool invincible;
+
+
+
 
     Rigidbody2D rb;
     Animator anim;
     private gunBehavior gun;
     private float currentGunDelay = 0f;
     private Vector2 velocity;
+
+    private Vector3 playerInitialPosition;
 
 
     private void Start()
@@ -40,12 +53,14 @@ public class testingAgent : Agent {
         anim = GetComponent<Animator>();
 
         velocity = Vector2.zero;
+        playerInitialPosition = transform.position;
+        invincible = false;
     }
     public override void OnEpisodeBegin() //Función que se ejecuta una vez empieza un episodio.
     {
-        transform.position = Vector3.zero; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
+        transform.position = playerInitialPosition; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
         velocity = Vector2.zero;
-        targetTransform.position = new Vector3(Random.Range(-8,8), Random.Range(-4,4), 0);
+        targetTransform.position = new Vector3(Random.Range(playerInitialPosition.x-8,playerInitialPosition.x+8), Random.Range(playerInitialPosition.y-4,playerInitialPosition.y+4), 0);
     }
 
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
@@ -168,7 +183,6 @@ public class testingAgent : Agent {
         if (collision.CompareTag("Target")){
             SetReward(1f);
             EndEpisode(); //Episode ends. Let's restart the game.
-
         }
 
         if (collision.CompareTag("Limit"))
@@ -177,6 +191,47 @@ public class testingAgent : Agent {
             EndEpisode(); //Episode ends. Let's restart the game.
         }
 
+        if (collision.CompareTag("Asteroid") && !invincible)
+        {
+            //if (gameManager.GetComponent<GameManager>().lives == 1) SceneManager.LoadScene("1");
+            gameManager.GetComponent<GameManager>().getHurt();
+            HurtParticles();
+            Destroy(collision.gameObject);
+        }
+
+    }
+
+    public void Respawn()
+    {
+        SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
+        velocity = Vector2.zero;
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.rotation = 0f;
+        }
+        Debug.Log(playerInitialPosition);
+        transform.position = playerInitialPosition;
+        transform.rotation = Quaternion.identity;
+
+        StartCoroutine(HurtAnimation());
+    }
+
+    private IEnumerator HurtAnimation()
+    {
+        anim.SetBool("isHurt", true);
+        invincible = true;
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("isHurt", false);
+        invincible = false;
+    }
+
+    public void HurtParticles()
+    {
+        GameObject cloneParticles = Instantiate(hurt, transform.position, transform.rotation);
+        SFXManager.instance.PlaySFX(explosionSFX, 0.066f);
+        Destroy(cloneParticles, 1);
     }
 
 }
