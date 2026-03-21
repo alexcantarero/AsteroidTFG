@@ -195,9 +195,7 @@ public class PlayerMovement : MonoBehaviour
             gameManager.GetComponent<GameManager>().getHurt();
             HurtParticles();
             Destroy(collision.gameObject);
-            
         }
-
     }
 
     public void HurtParticles()

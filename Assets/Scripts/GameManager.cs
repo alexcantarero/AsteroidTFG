@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         incrementCooldown = 0f;
         if (scoreText != null) scoreText.text = "<sketchy>" + score.ToString();
         passiveIncrementText.text = "<sketchy>+" + scorePassiveIncrement.ToString();
+        hearts.text = "<sketchy>PPP";
         difficultyLevel = Difficulty.Easy;
 
         spawner = asteroidSpawner != null ? asteroidSpawner.GetComponent<AsteroidSpawner>() : null;
@@ -98,12 +99,13 @@ public class GameManager : MonoBehaviour
 
     public void getHurt()
     {
-        //if (lives > 0)
-        //{
+        if (lives > 0)
+        {
             lives -= 1;
-            if (lives > 0 ) hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
+            if (lives == 0) Start();
+            else if (lives > 0 ) hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
             /*if (lives > 0)*/ StartCoroutine(DieCoroutine());
-        //}
+        }
         scorePassiveIncrement = 1;
         timeWithoutGettingHit = 0;
     }
