@@ -2,8 +2,8 @@ behaviors:
   testingAgent:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 32
-      buffer_size: 1280
+      batch_size: 300
+      buffer_size: 37200
       learning_rate: 0.0003
       beta: 0.001
       epsilon: 0.2

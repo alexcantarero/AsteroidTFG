@@ -194,7 +194,7 @@ public class testingAgent : Agent {
 
         if (collision.CompareTag("Limit"))
         {
-            SetReward(-0.5f);
+            SetReward(-0.1f);
             EndEpisode(); //Episode ends. Let's restart the game.
         }
 

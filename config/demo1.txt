@@ -1,0 +1,8 @@
+demo1
+    Fichero inicial spaceship.yaml.
+    Rewards: +1 cuando toca target, -0.5 cuando toca un límite.
+
+demo2
+    Se añade un Rayperception2D con 16 rayos por dirección. Sólo detecta el target.
+    .yaml: batch_size de 32 a 300, buffer_size de 1280 a 37200
+    Rewards: +1 cuando toca target, -0.1 cuando toca un límite
