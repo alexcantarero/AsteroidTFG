@@ -71,7 +71,6 @@ public class testingAgent : Agent {
         sensor.AddObservation(Vector2.Distance(transform.position, targetTransform.position)); //Distancia entre la nave y el target (1)
         sensor.AddObservation((Vector2)(targetTransform.position - transform.position).normalized); //Dirección entre la nave y el target (2)
 
-        Debug.Log((Vector2)(targetTransform.position - transform.position).normalized);
         ////En este caso, nos interesan dos: la posición de la nave y la posición del target. 
         //sensor.AddObservation(transform.position.x); //3 floats (x,y,z)
         //sensor.AddObservation(transform.position.y);
@@ -128,10 +127,13 @@ public class testingAgent : Agent {
         if (rotateAction == 1)
         {
             transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime); //Negativo en 2D en Z es hacia la derecha.
+            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
         }
         else if (rotateAction == 2)
         {
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
+
         }
 
         int shootAction = actions.DiscreteActions[2];
@@ -185,23 +187,29 @@ public class testingAgent : Agent {
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Limit"))
+        {
+            AddReward(-0.1f);
+            Debug.Log("Limite");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Target")){
-            SetReward(1f);
-            EndEpisode(); //Episode ends. Let's restart the game.
-        }
-
-        if (collision.CompareTag("Limit"))
-        {
-            SetReward(-0.1f);
-            EndEpisode(); //Episode ends. Let's restart the game.
+            AddReward(1f);
+            Debug.Log("Target");
+            EndEpisode(); //Episode ends.
         }
 
         if (collision.CompareTag("Asteroid") && !invincible)
         {
             //if (gameManager.GetComponent<GameManager>().lives == 1) SceneManager.LoadScene("1");
             gameManager.GetComponent<GameManager>().getHurt();
+            Debug.Log("Asteroide");
+            AddReward(-0.5f);
             HurtParticles();
             Destroy(collision.gameObject);
         }
@@ -218,7 +226,6 @@ public class testingAgent : Agent {
             rb.angularVelocity = 0f;
             rb.rotation = 0f;
         }
-        Debug.Log(playerInitialPosition);
         transform.position = playerInitialPosition;
         transform.rotation = Quaternion.identity;
 

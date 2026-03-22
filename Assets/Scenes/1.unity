@@ -511,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo1
+  DemonstrationName: demo2
   DemonstrationDirectory: demo200326
 --- !u!114 &26672391
 MonoBehaviour:
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 1
+    NumStackedVectorObservations: 4
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -715,7 +715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &34023802
 Transform:
   m_ObjectHideFlags: 0
@@ -746,9 +746,11 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Target
-  m_RaysPerDirection: 16
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
   m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 0.5
+  m_SphereCastRadius: 4.7
   m_RayLength: 165
   m_RayLayerMask:
     serializedVersion: 2
@@ -3018,7 +3020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &295163508
 Transform:
   m_ObjectHideFlags: 0
@@ -3049,9 +3051,11 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Target
-  m_RaysPerDirection: 16
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
   m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 0.5
+  m_SphereCastRadius: 4.7
   m_RayLength: 165
   m_RayLayerMask:
     serializedVersion: 2
@@ -4651,7 +4655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &399008385
 Transform:
   m_ObjectHideFlags: 0
@@ -4682,9 +4686,11 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Target
-  m_RaysPerDirection: 16
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
   m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 0.5
+  m_SphereCastRadius: 4.7
   m_RayLength: 165
   m_RayLayerMask:
     serializedVersion: 2
@@ -6033,7 +6039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 1
+    NumStackedVectorObservations: 4
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -6041,7 +6047,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: f5e50d9dba901654191127f96d7eb452, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: ecf6a9aad8fbb774a8c4060da8b8dcb4, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: testingAgent
@@ -6075,9 +6081,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Record: 1
+  Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo1
+  DemonstrationName: demo2
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:
@@ -10516,7 +10522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 1
+    NumStackedVectorObservations: 4
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -17892,7 +17898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 1
+    NumStackedVectorObservations: 4
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -18284,7 +18290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2044755694
 Transform:
   m_ObjectHideFlags: 0
@@ -18315,9 +18321,11 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Target
-  m_RaysPerDirection: 16
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
   m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 0.5
+  m_SphereCastRadius: 4.7
   m_RayLength: 165
   m_RayLayerMask:
     serializedVersion: 2
