@@ -32,6 +32,7 @@ public class gunBehavior : MonoBehaviour
         GameObject clone;
         clone = Instantiate(bullet, tf.position, tf.rotation);
         clone.GetComponent<Rigidbody2D>().velocity = GetComponentInParent<Transform>().up * 10;
+        clone.GetComponent<bulletBehavior>().testingAgent = GetComponentInParent<testingAgent>();
         SFXManager.instance.PlaySFX(shootSFX, 0.125f);
 
     }
@@ -47,6 +48,7 @@ public class gunBehavior : MonoBehaviour
             float angle = -half + step * i;
             Quaternion rot = tf.rotation * Quaternion.Euler(0f, 0f, angle);
             GameObject clone = Instantiate(secondaryBullet, tf.position, rot);
+            clone.GetComponent<secondaryBulletBehavior>().testingAgent = GetComponentInParent<testingAgent>();
             var rb = clone.GetComponent<Rigidbody2D>();
             if (rb != null)
             {

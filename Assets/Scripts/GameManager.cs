@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void addPoints(string name)
     {
+        Debug.Log("Added points");
         switch (name)
         {
             case "big(Clone)":

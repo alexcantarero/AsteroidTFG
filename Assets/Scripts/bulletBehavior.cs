@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bulletBehavior : MonoBehaviour
 {
+    public testingAgent testingAgent; //Referencia al script al que le otorgará la recompensa.
 
     void Start()
     {

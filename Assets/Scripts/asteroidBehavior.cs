@@ -20,9 +20,12 @@ public class asteroidBehavior : MonoBehaviour
 
     public AudioClip explosionSFX;
 
-    private bool bulletHasCollided;
+    public Vector2 asteroidObjective;
 
-    [SerializeField] private GameObject GameManager;
+    private bool bulletHasCollided;
+    public Vector2 direction;
+    public bool haveIBeenDestroyed;
+
     void Start()
     {
         
@@ -43,17 +46,17 @@ public class asteroidBehavior : MonoBehaviour
 
         body = GetComponent<Rigidbody2D>();
 
-        Vector2 point = new Vector2(Random.Range(-8f, 8f), Random.Range(-5f, 5f));
+        //Vector2 point = new Vector2(Random.Range(-8f, 8f), Random.Range(-5f, 5f));
 
-        Vector2 direction = (point - (Vector2)transform.position).normalized;
+        //Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        if(!haveIBeenDestroyed) direction = (asteroidObjective - (Vector2)transform.position).normalized;
+        else direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         body.velocity = direction * speed;
 
         parts = explosion.GetComponent<ParticleSystem>();
 
         bulletHasCollided = false;
-
-
 
     }
 
@@ -66,17 +69,37 @@ public class asteroidBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet") && !bulletHasCollided)
         {
+            GameObject bullet = collision.gameObject;
+            //Comprobamos si es un bullet normal o uno de los del disparo secundario. 
+            if (bullet.name.Equals("roundBullet(Clone)"))
+            {
+               bullet.GetComponent<secondaryBulletBehavior>().testingAgent.AddReward(0.5f);
+               GameObject gameManager = bullet.GetComponent<secondaryBulletBehavior>().testingAgent.gameManager; //Añadimos los puntos al marcador.
+               gameManager.GetComponent<GameManager>().addPoints(name);
+
+                Debug.Log("Reward added for destroying asteroid! SECONDARY");
+            }
+            else if (bullet.name.Equals("bullet(Clone)"))
+            {
+                bullet.GetComponent<bulletBehavior>().testingAgent.AddReward(0.5f);
+                GameObject gameManager = bullet.GetComponent<bulletBehavior>().testingAgent.gameManager; //Añadimos los puntos al marcador.
+                gameManager.GetComponent<GameManager>().addPoints(name);
+                Debug.Log("Reward added for destroying asteroid! PRIMARY");
+            }
             bulletHasCollided = true;
+
             //División
             if (name == "big(Clone)" || name == "medium(Clone)")
             {
                 
-                Instantiate(subAsteroids[0], gameObject.transform.position, Quaternion.identity);
-                Instantiate(subAsteroids[1], gameObject.transform.position, Quaternion.identity);
+                GameObject ast1 = Instantiate(subAsteroids[0], gameObject.transform.position, Quaternion.identity);
+                ast1.GetComponent<asteroidBehavior>().haveIBeenDestroyed = true;
+
+                GameObject ast2 = Instantiate(subAsteroids[1], gameObject.transform.position, Quaternion.identity);
+                ast2.GetComponent<asteroidBehavior>().haveIBeenDestroyed = true;
+
             }
             //Puntaje
-            GameManager.GetComponent<GameManager>().addPoints(name);
-            Debug.Log("Added points");
             explosionEffect();
             
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class secondaryBulletBehavior : MonoBehaviour
 {
     [SerializeField] private float ttl;
+    public testingAgent testingAgent; //Referencia al script al que le otorgará la recompensa.
 
     void Start()
     {
@@ -24,7 +25,6 @@ public class secondaryBulletBehavior : MonoBehaviour
         if (collision.collider.CompareTag("Limit"))
         {
             Destroy(gameObject);
-            //If the bullet does not hit anything, the player loses points!
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

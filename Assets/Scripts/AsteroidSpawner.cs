@@ -26,10 +26,12 @@ public class AsteroidSpawner : MonoBehaviour
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
-            Instantiate(
+            GameObject asteroid = Instantiate(
                 asteroids[Random.Range(0, asteroids.Length)],
                 spawners[Random.Range(0, spawners.Length)].transform.position,
                 Quaternion.identity);
+            asteroid.GetComponent<asteroidBehavior>().asteroidObjective =  new Vector2(Random.Range(spawners[2].transform.position.x, spawners[3].transform.position.x), Random.Range(spawners[0].transform.position.y, spawners[1].transform.position.y));
+
             currentTime = spawnCooldown;
         }
     }

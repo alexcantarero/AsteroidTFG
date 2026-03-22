@@ -17,7 +17,7 @@ public class testingAgent : Agent {
 
     [Header("Referencias")]
     [SerializeField] private Transform targetTransform; //Un target para probar que se mueve hacia allí y que aprende. 
-    [SerializeField] private GameObject gameManager;
+    [SerializeField] public GameObject gameManager;
     [SerializeField] private AudioClip thrustSFX;
     [SerializeField] private AudioClip respawnSFX;
     [SerializeField] private AudioClip explosionSFX;
