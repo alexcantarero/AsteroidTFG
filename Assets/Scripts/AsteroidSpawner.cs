@@ -44,4 +44,12 @@ public class AsteroidSpawner : MonoBehaviour
             Debug.Log("Paso de nivel, cooldown a" + spawnCooldown);
         }
     }
+
+    internal void resetDifficulty()
+    {
+
+        spawnCooldown = 3f;
+    
+    
+    }
 }

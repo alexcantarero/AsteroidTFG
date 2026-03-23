@@ -14,15 +14,12 @@ public class testingAgent : Agent {
     //The idea here is to choose which information must the agent know. I want to train it to just avoid meteors. 
     //In this case, it will need its actual position, and then info about a specific target. 
 
-
     [Header("Referencias")]
     [SerializeField] private Transform targetTransform; //Un target para probar que se mueve hacia allí y que aprende. 
     [SerializeField] public GameObject gameManager;
     [SerializeField] private AudioClip thrustSFX;
     [SerializeField] private AudioClip respawnSFX;
     [SerializeField] private AudioClip explosionSFX;
-
-
 
     [Header("Parámetros")]
     [SerializeField] private float acceleration = 6f;
@@ -35,14 +32,11 @@ public class testingAgent : Agent {
     [SerializeField] private bool invincible;
 
 
-
-
     Rigidbody2D rb;
     Animator anim;
     private gunBehavior gun;
     private float currentGunDelay = 0f;
     private Vector2 velocity;
-
     private Vector3 playerInitialPosition;
 
 
@@ -58,6 +52,8 @@ public class testingAgent : Agent {
     }
     public override void OnEpisodeBegin() //Función que se ejecuta una vez empieza un episodio.
     {
+        Debug.Log("episodio comenso");
+
         transform.position = playerInitialPosition; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
         velocity = Vector2.zero;
         targetTransform.position = new Vector3(Random.Range(playerInitialPosition.x-8,playerInitialPosition.x+8), Random.Range(playerInitialPosition.y-4,playerInitialPosition.y+4), 0);
@@ -133,7 +129,6 @@ public class testingAgent : Agent {
         {
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
             AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
-
         }
 
         int shootAction = actions.DiscreteActions[2];
@@ -141,11 +136,14 @@ public class testingAgent : Agent {
         {
             if (gun != null) gun.ShootPrimary(); //Si la arma se ha asignado bien, disparamos.
             currentGunDelay = primaryGunDelay; //Asignamos el cooldown referente al disparo realizado
+            AddReward(-0.0005f); //Penalización mínima por disparar. Así disparará lo mínimo posible.
+
         }
         else if (shootAction == 2 && currentGunDelay <= 0f) //Idem pero para el disparo secundario
         {
             if (gun != null) gun.ShootSecondary();
             currentGunDelay = secondaryGunDelay;
+            AddReward(-0.0005f); 
         }
     }
     public override void Heuristic(in ActionBuffers actionsOut) // Con esta función seremos capaces de controlar manualmente a la nave y así generar la demo. Toca trasladar todo el playerMovement aquí :(
@@ -206,7 +204,6 @@ public class testingAgent : Agent {
 
         if (collision.CompareTag("Asteroid") && !invincible)
         {
-            //if (gameManager.GetComponent<GameManager>().lives == 1) SceneManager.LoadScene("1");
             gameManager.GetComponent<GameManager>().getHurt();
             Debug.Log("Asteroide");
             AddReward(-0.5f);

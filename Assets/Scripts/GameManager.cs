@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPEffects.TMPAnimations;
 using TMPEffects.Components;
 using Unity.MLAgents.Policies;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -103,9 +104,18 @@ public class GameManager : MonoBehaviour
         if (lives > 0)
         {
             lives -= 1;
-            if (lives == 0) Start();
-            else if (lives > 0 ) hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
-            /*if (lives > 0)*/ StartCoroutine(DieCoroutine());
+            if (lives == 0)
+            {
+                Start();
+                spawner.resetDifficulty();
+                if (player.GetComponent<testingAgent>().enabled)
+                {
+                    player.GetComponent<testingAgent>().AddReward(-1f); //Reward por perder. 
+                }
+
+            }
+            else if (lives > 0) hearts.text = hearts.text.Substring(0, hearts.text.Length - 1);
+            StartCoroutine(DieCoroutine());
         }
         scorePassiveIncrement = 1;
         timeWithoutGettingHit = 0;

@@ -542,7 +542,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4000
+  MaxStep: 40000
   targetTransform: {fileID: 1175580217}
   gameManager: {fileID: 2001473575}
   thrustSFX: {fileID: 8300000, guid: 8f257738a0568924f85b0428f0a2b4eb, type: 3}
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 4
+    NumStackedVectorObservations: 8
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -6011,7 +6011,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4000
+  MaxStep: 40000
   targetTransform: {fileID: 307665610}
   gameManager: {fileID: 1517215651}
   thrustSFX: {fileID: 8300000, guid: 8f257738a0568924f85b0428f0a2b4eb, type: 3}
@@ -6039,7 +6039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 4
+    NumStackedVectorObservations: 8
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -6047,9 +6047,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: f3f4f67b4e5279c4686e7c07da36bcb4, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: testingAgent
   TeamId: 0
   m_UseChildSensors: 1
@@ -6083,7 +6083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo3
+  DemonstrationName: demo5
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:
@@ -10494,7 +10494,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4000
+  MaxStep: 40000
   targetTransform: {fileID: 362270852}
   gameManager: {fileID: 1046655324}
   thrustSFX: {fileID: 8300000, guid: 8f257738a0568924f85b0428f0a2b4eb, type: 3}
@@ -10522,7 +10522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 4
+    NumStackedVectorObservations: 8
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
@@ -13819,7 +13819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1510209349
 Transform:
   m_ObjectHideFlags: 0
@@ -13977,7 +13977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1544264781
 Transform:
   m_ObjectHideFlags: 0
@@ -15880,7 +15880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1817054038
 Transform:
   m_ObjectHideFlags: 0
@@ -17870,7 +17870,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4000
+  MaxStep: 40000
   targetTransform: {fileID: 1648707073}
   gameManager: {fileID: 870257686}
   thrustSFX: {fileID: 8300000, guid: 8f257738a0568924f85b0428f0a2b4eb, type: 3}
@@ -17898,7 +17898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 5
-    NumStackedVectorObservations: 4
+    NumStackedVectorObservations: 8
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 020000000300000003000000
