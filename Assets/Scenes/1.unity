@@ -6047,9 +6047,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: ecf6a9aad8fbb774a8c4060da8b8dcb4, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: f3f4f67b4e5279c4686e7c07da36bcb4, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 2
   m_BehaviorName: testingAgent
   TeamId: 0
   m_UseChildSensors: 1
@@ -6081,7 +6081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Record: 1
+  Record: 0
   NumStepsToRecord: 0
   DemonstrationName: demo3
   DemonstrationDirectory: demo200326
