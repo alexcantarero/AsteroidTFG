@@ -22,10 +22,10 @@ behaviors:
         gail: # Generative Adversarial Imitation Learning: Engañar al disc. a que las acciones que realiza provienen de la demo.
           gamma: 0.99 # A más alto, da mas importancia al aprendizaje actual que al de los ficheros.
           strength: 0.5 # Impacto
-          demo_path: demo200326/demo5.demo
+          demo_path: demo200326/demo6.demo
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
       strength: 0.5
-      demo_path: demo200326/demo5.demo
+      demo_path: demo200326/demo6.demo
       # steps: 100000 #
     keep_checkpoints: 5
     max_steps: 10000000 # Ciclos observación/acción/observación que el agente realiza antes de finalizar el entrenamiento.
