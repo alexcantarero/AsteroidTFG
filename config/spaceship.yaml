@@ -9,7 +9,7 @@ behaviors:
       epsilon: 0.2 # Porcentaje (tanto por uno) de cambio de la política en cada update.
       lambd: 0.90 # Imperatividad de las recompensas del estado actual.
       num_epoch: 8 # Estabilidad vs. rapidez del entrenamiento.
-      learning_rate_schedule: linear
+      learning_rate_schedule: constant
     network_settings:
       normalize: true # Indica si el vector de acciones se normaliza.
       hidden_units: 64 # Unidades que tienen cada una de las capas ocultas. A más complejo el sistema de acciones, más alto.

@@ -461,7 +461,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 295163508}
+      addedObject: {fileID: 755317051}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: 4
@@ -709,7 +709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34023802}
   - component: {fileID: 34023803}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RayPerception
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ Transform:
   m_GameObject: {fileID: 34023801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.7, z: 0}
+  m_LocalPosition: {x: 0, y: -1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -749,12 +749,12 @@ MonoBehaviour:
   - Limit
   - Asteroid
   m_RaysPerDirection: 20
-  m_MaxRayDegrees: 136.8
+  m_MaxRayDegrees: 175.5
   m_SphereCastRadius: 4.7
   m_RayLength: 165
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967291
+    m_Bits: 4294965723
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3004,65 +3004,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281971103}
   m_CullTransparentMesh: 1
---- !u!1 &295163507
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 295163508}
-  - component: {fileID: 295163509}
-  m_Layer: 10
-  m_Name: RayPerception
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &295163508
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295163507}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 9, z: 0}
-  m_LocalScale: {x: 1.0000317, y: 0.99995637, z: 0.99995637}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 26672389}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &295163509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295163507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor
-  m_DetectableTags:
-  - Target
-  - Limit
-  - Asteroid
-  m_RaysPerDirection: 20
-  m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 4.7
-  m_RayLength: 165
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &298050992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4639,65 +4580,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b97a02807d12a54088c859b20cc9b87, type: 3}
---- !u!1 &399008384
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 399008385}
-  - component: {fileID: 399008386}
-  m_Layer: 10
-  m_Name: RayPerception
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &399008385
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399008384}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1098659732}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &399008386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399008384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor
-  m_DetectableTags:
-  - Target
-  - Limit
-  - Asteroid
-  m_RaysPerDirection: 20
-  m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 4.7
-  m_RayLength: 165
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &400441002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6047,7 +5929,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: a1039adcde0841646b890acc32bd5b1c, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: testingAgent
@@ -6083,7 +5965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo5
+  DemonstrationName: demo6
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:
@@ -8136,6 +8018,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754476200}
   m_CullTransparentMesh: 1
+--- !u!1 &755317050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755317051}
+  - component: {fileID: 755317052}
+  m_Layer: 0
+  m_Name: RayPerception
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &755317051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755317050}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.12, y: 0.02, z: 0}
+  m_LocalScale: {x: 1.0000317, y: 0.99995637, z: 0.99995637}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 26672389}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &755317052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755317050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - Target
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 175.5
+  m_SphereCastRadius: 4.7
+  m_RayLength: 165
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294965723
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &763603564
 GameObject:
   m_ObjectHideFlags: 0
@@ -9135,6 +9076,65 @@ Transform:
   - {fileID: 934706823}
   m_Father: {fileID: 2040862193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &951365628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951365629}
+  - component: {fileID: 951365630}
+  m_Layer: 0
+  m_Name: RayPerception
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951365629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951365628}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19, y: -0.4293684, z: 2.349415}
+  m_LocalScale: {x: 1.0000317, y: 0.99995637, z: 0.99995637}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1098659732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &951365630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951365628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - Target
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 175.5
+  m_SphereCastRadius: 4.7
+  m_RayLength: 165
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294965723
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &953294241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12983,7 +12983,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 399008385}
+      addedObject: {fileID: 951365629}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: 4
@@ -13426,6 +13426,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450365719}
   m_CullTransparentMesh: 1
+--- !u!1 &1472872187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1472872188}
+  - component: {fileID: 1472872189}
+  m_Layer: 0
+  m_Name: RayPerception
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1472872188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472872187}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4293684, z: 2.349415}
+  m_LocalScale: {x: 1.0000317, y: 0.99995637, z: 0.99995637}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2001173797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1472872189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472872187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - Target
+  - Limit
+  - Asteroid
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 175.5
+  m_SphereCastRadius: 4.7
+  m_RayLength: 165
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294965723
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1480566559
 GameObject:
   m_ObjectHideFlags: 0
@@ -18274,65 +18333,6 @@ Transform:
   - {fileID: 1983223878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2044755693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2044755694}
-  - component: {fileID: 2044755695}
-  m_Layer: 10
-  m_Name: RayPerception
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2044755694
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044755693}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2001173797}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2044755695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044755693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor
-  m_DetectableTags:
-  - Target
-  - Limit
-  - Asteroid
-  m_RaysPerDirection: 20
-  m_MaxRayDegrees: 136.8
-  m_SphereCastRadius: 4.7
-  m_RayLength: 165
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2057707597
 GameObject:
   m_ObjectHideFlags: 0
@@ -19988,7 +19988,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2044755694}
+      addedObject: {fileID: 1472872188}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       insertIndex: 4
@@ -20144,7 +20144,7 @@ PrefabInstance:
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1317260156244697783, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_Name
@@ -20153,6 +20153,10 @@ PrefabInstance:
     - target: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652795336096337386, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3818798373624069329, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: shootSFX
