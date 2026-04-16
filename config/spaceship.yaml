@@ -12,7 +12,7 @@ behaviors:
       learning_rate_schedule: constant
     network_settings:
       normalize: true # Indica si el vector de acciones se normaliza.
-      hidden_units: 64 # Unidades que tienen cada una de las capas ocultas. A más complejo el sistema de acciones, más alto.
+      hidden_units: 128 # Unidades que tienen cada una de las capas ocultas. A más complejo el sistema de acciones, más alto.
       num_layers: 2 # Capas ocultas en la red neuronal
       vis_encode_type: simple
       reward_signals:
@@ -21,11 +21,11 @@ behaviors:
           strength: 1.0
         gail: # Generative Adversarial Imitation Learning: Engañar al disc. a que las acciones que realiza provienen de la demo.
           gamma: 0.99 # A más alto, da mas importancia al aprendizaje actual que al de los ficheros.
-          strength: 0.5 # Impacto
+          strength: 0.8 # Impacto
           demo_path: demo200326/demo6.demo
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
-      strength: 0.5
-      demo_path: demo200326/demo6.demo
+      strength: 0.8
+      demo_path: demo200326/demo7.demo
       # steps: 100000 #
     keep_checkpoints: 5
     max_steps: 10000000 # Ciclos observación/acción/observación que el agente realiza antes de finalizar el entrenamiento.
