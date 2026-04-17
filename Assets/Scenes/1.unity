@@ -5965,7 +5965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo7
+  DemonstrationName: demo8
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:

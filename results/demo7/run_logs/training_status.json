@@ -1,0 +1,65 @@
+{
+    "testingAgent": {
+        "checkpoints": [
+            {
+                "steps": 499855,
+                "file_path": "results\\demo7\\testingAgent\\testingAgent-499855.onnx",
+                "reward": 6.99473223116781,
+                "creation_time": 1776362897.6504686,
+                "auxillary_file_paths": [
+                    "results\\demo7\\testingAgent\\testingAgent-499855.pt"
+                ]
+            },
+            {
+                "steps": 999734,
+                "file_path": "results\\demo7\\testingAgent\\testingAgent-999734.onnx",
+                "reward": 6.579656914210141,
+                "creation_time": 1776364813.676151,
+                "auxillary_file_paths": [
+                    "results\\demo7\\testingAgent\\testingAgent-999734.pt"
+                ]
+            },
+            {
+                "steps": 1499822,
+                "file_path": "results\\demo7\\testingAgent\\testingAgent-1499822.onnx",
+                "reward": null,
+                "creation_time": 1776366772.1593227,
+                "auxillary_file_paths": [
+                    "results\\demo7\\testingAgent\\testingAgent-1499822.pt"
+                ]
+            },
+            {
+                "steps": 1999999,
+                "file_path": "results\\demo7\\testingAgent\\testingAgent-1999999.onnx",
+                "reward": 9.943661629432633,
+                "creation_time": 1776368674.261106,
+                "auxillary_file_paths": [
+                    "results\\demo7\\testingAgent\\testingAgent-1999999.pt"
+                ]
+            },
+            {
+                "steps": 2287950,
+                "file_path": "results\\demo7\\testingAgent\\testingAgent-2287950.onnx",
+                "reward": null,
+                "creation_time": 1776369804.3339067,
+                "auxillary_file_paths": [
+                    "results\\demo7\\testingAgent\\testingAgent-2287950.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2287950,
+            "file_path": "results\\demo7\\testingAgent.onnx",
+            "reward": null,
+            "creation_time": 1776369804.3339067,
+            "auxillary_file_paths": [
+                "results\\demo7\\testingAgent\\testingAgent-2287950.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.11.0+cu115"
+    }
+}

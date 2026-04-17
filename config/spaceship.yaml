@@ -5,7 +5,7 @@ behaviors:
       batch_size: 300 # Pasos posibles a guardar para alimentar la red neuronal. A más alto más lento pero más estable.
       buffer_size: 37200 # Experiencias necesarias para modificar el modelo. Multiplo de batch_size.
       learning_rate: 0.0003 # Frecuencia de actualización de los pesos de la red neuronal. A más bajo, más estable, a más alto, más rápido.
-      beta: 0.001 # Aleatoriedad de la pólítica al inicio del entrenamiento.
+      beta: 0.0001 # Aleatoriedad de la pólítica al inicio del entrenamiento.
       epsilon: 0.2 # Porcentaje (tanto por uno) de cambio de la política en cada update.
       lambd: 0.90 # Imperatividad de las recompensas del estado actual.
       num_epoch: 8 # Estabilidad vs. rapidez del entrenamiento.
@@ -18,13 +18,13 @@ behaviors:
       reward_signals:
         extrinsic: # Mejoría más allá de la demo.
           gamma: 0.99
-          strength: 1.0
+          strength: 0.1
         gail: # Generative Adversarial Imitation Learning: Engañar al disc. a que las acciones que realiza provienen de la demo.
           gamma: 0.99 # A más alto, da mas importancia al aprendizaje actual que al de los ficheros.
-          strength: 0.8 # Impacto
+          strength: 1.0 # Impacto
           demo_path: demo200326/demo6.demo
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
-      strength: 0.8
+      strength: 1.0
       demo_path: demo200326/demo7.demo
       # steps: 100000 #
     keep_checkpoints: 5
