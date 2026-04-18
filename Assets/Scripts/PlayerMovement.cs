@@ -9,12 +9,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-
     public GameObject gameManager;
     Rigidbody2D rb;
     Transform tf;
     Animator anim;
-
     Vector2 velocity;
 
     // Parámetros expuestos
@@ -31,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     public Image primaryFillBar;
     private float currentCooldownDuration; //Primary or secondary gun delay
 
-
     public GameObject hurt;
 
     public AudioClip respawnSFX;
@@ -39,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip thrustSFX;
 
     private Vector3 initialPlayerPosition;
-
-
 
     void Start()
     {
@@ -55,10 +50,7 @@ public class PlayerMovement : MonoBehaviour
         primaryFillBar.fillAmount = 1;
         initialPlayerPosition = transform.position;
         Debug.Log("initialPlayerPosition set to" +  initialPlayerPosition);
-        
-
-
-
+       
     }
 
     void Update()

@@ -624,6 +624,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &26672398 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+  m_PrefabInstance: {fileID: 26672386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &30104674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5931,7 +5936,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: testingAgent
   TeamId: 0
   m_UseChildSensors: 1
@@ -5963,13 +5968,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Record: 0
+  Record: 1
   NumStepsToRecord: 0
-  DemonstrationName: demo8
+  DemonstrationName: demo9
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+  m_PrefabInstance: {fileID: 2848225283430277520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &519821896 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
   m_PrefabInstance: {fileID: 2848225283430277520}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &521231483
@@ -10586,6 +10596,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
   m_PrefabInstance: {fileID: 1402716851}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1098659735 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+  m_PrefabInstance: {fileID: 1402716851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1106046468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12068,6 +12083,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1562320377}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 2001173793}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: asteroidSpawner
       value: 
       objectReference: {fileID: 685138047}
@@ -12075,6 +12094,10 @@ PrefabInstance:
       propertyPath: passiveIncrement
       value: 
       objectReference: {fileID: 371969512}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerBoxCollider2D
+      value: 
+      objectReference: {fileID: 2001173800}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: passiveIncrementText
       value: 
@@ -14145,6 +14168,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1276052736}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 1098659728}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: asteroidSpawner
       value: 
       objectReference: {fileID: 620052225}
@@ -14152,6 +14179,10 @@ PrefabInstance:
       propertyPath: passiveIncrement
       value: 
       objectReference: {fileID: 1741464692}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerBoxCollider2D
+      value: 
+      objectReference: {fileID: 1098659735}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: passiveIncrementText
       value: 
@@ -16294,6 +16325,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519821870}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerSR
+      value: 
+      objectReference: {fileID: 519821874}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 988524291}
@@ -16310,6 +16345,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1494500009}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 519821876}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: asteroidSpawner
       value: 
       objectReference: {fileID: 949213344}
@@ -16317,6 +16356,10 @@ PrefabInstance:
       propertyPath: passiveIncrement
       value: 
       objectReference: {fileID: 966026209}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerBoxCollider2D
+      value: 
+      objectReference: {fileID: 519821896}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: passiveIncrementText
       value: 
@@ -18021,6 +18064,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 373141276841275991, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
   m_PrefabInstance: {fileID: 2134351784}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &2001173800 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+  m_PrefabInstance: {fileID: 2134351784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2001473573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18102,6 +18150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2133467034}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 26672395}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: asteroidSpawner
       value: 
       objectReference: {fileID: 2116089760}
@@ -18109,6 +18161,10 @@ PrefabInstance:
       propertyPath: passiveIncrement
       value: 
       objectReference: {fileID: 2092019002}
+    - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
+      propertyPath: playerBoxCollider2D
+      value: 
+      objectReference: {fileID: 26672398}
     - target: {fileID: 8532296488335869213, guid: 24b3be34e8c3fa34193375b9e6373f1d, type: 3}
       propertyPath: passiveIncrementText
       value: 
@@ -20139,6 +20195,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 694181924077509771, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 694181924077509771, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 694181924077509771, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -20166,6 +20230,10 @@ PrefabInstance:
       propertyPath: secondaryBullet
       value: 
       objectReference: {fileID: 5113556006457154489, guid: c01085e8a3bc26c4c90fe5c56bb6c3ca, type: 3}
+    - target: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6536646647204691509, guid: cdf955e5eb373bf458fd304c8a05eca5, type: 3}
       propertyPath: m_IsTrigger
       value: 0

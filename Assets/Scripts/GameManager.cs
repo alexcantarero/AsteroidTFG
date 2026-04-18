@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
 
     public CameraShake cameraShake;
 
+    [SerializeField] Animator playerAnimator;
+    [SerializeField] BoxCollider2D playerBoxCollider2D;
+
+
     private void Awake()
     {
     }
@@ -110,7 +114,8 @@ public class GameManager : MonoBehaviour
                 spawner.resetDifficulty();
                 if (player.GetComponent<testingAgent>().enabled)
                 {
-                    player.GetComponent<testingAgent>().AddReward(-1f); //Reward por perder. 
+                    player.GetComponent<testingAgent>().AddReward(-1f); //Reward por perder.
+                    player.GetComponent<testingAgent>().EndEpisode();
                 }
 
             }
@@ -123,12 +128,16 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DieCoroutine()
     {
-        player.SetActive(false);
+        //player.SetActive(false);
+        playerAnimator.SetBool("collisioned", true);
+        playerBoxCollider2D.enabled = false;
         cameraShake.shake = true;
         yield return new WaitForSeconds(0.3f);
         cameraShake.shake = false;
         yield return new WaitForSeconds(1.7f);
-        player.SetActive(true);
+        //player.SetActive(true);
+        playerAnimator.SetBool("collisioned", false);
+        playerBoxCollider2D.enabled = true;
         if (player.GetComponent<PlayerMovement>().enabled) player.GetComponent<PlayerMovement>().respawn();
         else if (player.GetComponent<testingAgent>().enabled) player.GetComponent<testingAgent>().Respawn();
         SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
