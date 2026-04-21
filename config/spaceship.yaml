@@ -12,7 +12,7 @@ behaviors:
       learning_rate_schedule: constant
     network_settings:
       normalize: true # Indica si el vector de acciones se normaliza.
-      hidden_units: 128 # Unidades que tienen cada una de las capas ocultas. A más complejo el sistema de acciones, más alto.
+      hidden_units: 256 # Unidades que tienen cada una de las capas ocultas. A más complejo el sistema de acciones, más alto.
       num_layers: 2 # Capas ocultas en la red neuronal
       vis_encode_type: simple
     reward_signals:
@@ -26,7 +26,7 @@ behaviors:
       #   use_vail: false # <--- Agrégalo explícitamente como falso
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
       strength: 0.8
-      demo_path: demo200326/demo17.demo
+      demo_path: demo200326/demo20.demo
       # steps: 100000 #
     keep_checkpoints: 5
     max_steps: 10000000 # Ciclos observación/acción/observación que el agente realiza antes de finalizar el entrenamiento.

@@ -69,11 +69,11 @@ public class testingAgent : Agent {
         if (closestAsteroid != null)
         {
             Vector2 dirToTarget = (closestAsteroid.position - transform.position).normalized;
-            Debug.Log("Found asteroid! Its local direction is: " +  dirToTarget);
+            //Debug.Log("Found asteroid! Its local direction is: " +  dirToTarget);
             sensor.AddObservation((Vector2)transform.InverseTransformDirection(dirToTarget)); //Dirección local hacia el asteroide. (2)
 
             float dist = Vector2.Distance(closestAsteroid.position, transform.position);
-            Debug.Log("Distance to it: " + dist);
+            //Debug.Log("Distance to it: " + dist);
             sensor.AddObservation(dist); //Distancia al asteroide más cercano. (1)
         }
         else
