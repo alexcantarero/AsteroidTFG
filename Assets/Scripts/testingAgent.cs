@@ -75,6 +75,20 @@ public class testingAgent : Agent {
             float dist = Vector2.Distance(closestAsteroid.position, transform.position);
             //Debug.Log("Distance to it: " + dist);
             sensor.AddObservation(dist); //Distancia al asteroide más cercano. (1)
+
+            Rigidbody2D targetRb = closestAsteroid.GetComponent<Rigidbody2D>();
+
+            if (targetRb != null)
+            {
+                Vector2 relativeVelocity = targetRb.velocity - rb.velocity; //Velocidad relativa respecto a la nave.
+                //Debug.Log("Velocidad relativa: " + relativeVelocity);
+                sensor.AddObservation(transform.InverseTransformDirection(relativeVelocity)); // (2 datos)
+            }
+            else
+            {
+                Debug.Log("No existe el rb en el asteroide");
+                sensor.AddObservation(Vector2.zero);
+            }
         }
         else
         {
