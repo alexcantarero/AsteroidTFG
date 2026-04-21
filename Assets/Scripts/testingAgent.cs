@@ -62,19 +62,28 @@ public class testingAgent : Agent {
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
     {
 
-
         sensor.AddObservation((Vector2)transform.up); // Dirección recta de la nave. (2)
-        sensor.AddObservation(Vector2.Distance(transform.position, targetTransform.position)); //Distancia entre la nave y el target (1)
-        sensor.AddObservation((Vector2)(targetTransform.position - transform.position).normalized); //Dirección entre la nave y el target (2)
+        sensor.AddObservation(velocity.magnitude / maxSpeed); //Velocidad normalizada en float (1)
 
-        ////En este caso, nos interesan dos: la posición de la nave y la posición del target. 
-        //sensor.AddObservation(transform.position.x); //3 floats (x,y,z)
-        //sensor.AddObservation(transform.position.y);
-        //sensor.AddObservation(transform.position.z);
-        //sensor.AddObservation(targetTransform.position.x); //3 floats de nuevo (x,y,z)
-        //sensor.AddObservation(targetTransform.position.y);
-        //sensor.AddObservation(targetTransform.position.z);
-        ////Por esto necesitamos un vector de observaciones (space size) de 6, para almacenar estas seis variables.
+        Transform closestAsteroid = GetClosestAsteroid();
+        if (closestAsteroid != null)
+        {
+            Vector2 dirToTarget = (closestAsteroid.position - transform.position).normalized;
+            Debug.Log("Found asteroid! Its local direction is: " +  dirToTarget);
+            sensor.AddObservation((Vector2)transform.InverseTransformDirection(dirToTarget)); //Dirección local hacia el asteroide. (2)
+
+            float dist = Vector2.Distance(closestAsteroid.position, transform.position);
+            Debug.Log("Distance to it: " + dist);
+            sensor.AddObservation(dist); //Distancia al asteroide más cercano. (1)
+        }
+        else
+        {
+            sensor.AddObservation(Vector2.zero); // No hay asteroides
+            sensor.AddObservation(0f); //No hay ninguno así que distancia cero. 
+
+        }
+
+
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -123,12 +132,12 @@ public class testingAgent : Agent {
         if (rotateAction == 1)
         {
             transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime); //Negativo en 2D en Z es hacia la derecha.
-            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
+            //AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
         }
         else if (rotateAction == 2)
         {
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
+            //AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
         }
 
         int shootAction = actions.DiscreteActions[2];
@@ -136,14 +145,14 @@ public class testingAgent : Agent {
         {
             if (gun != null) gun.ShootPrimary(); //Si la arma se ha asignado bien, disparamos.
             currentGunDelay = primaryGunDelay; //Asignamos el cooldown referente al disparo realizado
-            AddReward(-0.005f); //Penalización mínima por disparar. Así disparará lo mínimo posible.
+            //AddReward(-0.005f); //Penalización mínima por disparar. Así disparará lo mínimo posible.
 
         }
         else if (shootAction == 2 && currentGunDelay <= 0f) //Idem pero para el disparo secundario
         {
             if (gun != null) gun.ShootSecondary();
             currentGunDelay = secondaryGunDelay;
-            AddReward(-0.005f); 
+            //AddReward(-0.005f); 
         }
     }
     public override void Heuristic(in ActionBuffers actionsOut) // Con esta función seremos capaces de controlar manualmente a la nave y así generar la demo. Toca trasladar todo el playerMovement aquí :(
@@ -189,7 +198,7 @@ public class testingAgent : Agent {
     {
         if (collision.collider.CompareTag("Limit"))
         {
-            AddReward(-0.1f);
+            AddReward(-0.001f);
             Debug.Log("Limite");
         }
     }
@@ -213,6 +222,29 @@ public class testingAgent : Agent {
 
     }
 
+    // Función para encontrar el asteroide más cercano
+    private Transform GetClosestAsteroid()
+    {
+
+        Transform areaParent = transform.parent; //WorkEnv. Buscamos sólo los asteroides más cercanos dentro del workingenvironment.
+
+        float minDistance = Mathf.Infinity; //Inicializamos una distancia infinita (por ahora!)
+        Transform closest = null;
+
+        foreach (Transform t in areaParent) //Para todo transform dentro del WorkEnv...
+        {
+            if (t.CompareTag("Asteroid")) //Si detectamos un asteroide dentro del environment...
+            {
+                float dist = Vector2.Distance(transform.position, t.position); //Calculamos la distancia hacia él
+                if (dist < minDistance) //Si está más cerca del que ya había
+                {
+                    minDistance = dist;
+                    closest = t;
+                }
+            }
+        }
+        return closest; //Devolvemos el transform más pequeño.
+    }
     public void Respawn()
     {
         SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
