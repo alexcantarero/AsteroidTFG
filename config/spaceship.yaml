@@ -26,7 +26,7 @@ behaviors:
       #   use_vail: false # <--- Agrégalo explícitamente como falso
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
       strength: 0.8
-      demo_path: demo200326/demo20.demo
+      demo_path: demo200326/demo21.demo
       # steps: 100000 #
     keep_checkpoints: 5
     max_steps: 10000000 # Ciclos observación/acción/observación que el agente realiza antes de finalizar el entrenamiento.

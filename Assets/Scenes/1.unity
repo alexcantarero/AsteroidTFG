@@ -5946,9 +5946,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 1f521521ded25864f9218d1c7be3b877, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: testingAgent
   TeamId: 0
   m_UseChildSensors: 1
@@ -5980,9 +5980,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Record: 1
+  Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: demo20
+  DemonstrationName: demo21
   DemonstrationDirectory: demo200326
 --- !u!4 &519821893 stripped
 Transform:
