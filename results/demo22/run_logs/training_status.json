@@ -1,0 +1,38 @@
+{
+    "testingAgent": {
+        "checkpoints": [
+            {
+                "steps": 499626,
+                "file_path": "results\\demo22\\testingAgent\\testingAgent-499626.onnx",
+                "reward": 5.75,
+                "creation_time": 1777808498.1361945,
+                "auxillary_file_paths": [
+                    "results\\demo22\\testingAgent\\testingAgent-499626.pt"
+                ]
+            },
+            {
+                "steps": 792320,
+                "file_path": "results\\demo22\\testingAgent\\testingAgent-792320.onnx",
+                "reward": null,
+                "creation_time": 1777809512.661565,
+                "auxillary_file_paths": [
+                    "results\\demo22\\testingAgent\\testingAgent-792320.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 792320,
+            "file_path": "results\\demo22\\testingAgent.onnx",
+            "reward": null,
+            "creation_time": 1777809512.661565,
+            "auxillary_file_paths": [
+                "results\\demo22\\testingAgent\\testingAgent-792320.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.11.0+cu115"
+    }
+}

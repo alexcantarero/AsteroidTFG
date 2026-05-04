@@ -18,15 +18,16 @@ behaviors:
     reward_signals:
       extrinsic: # Mejoría más allá de la demo.
         gamma: 0.99
-        strength: 0.8
+        strength: 0.5 # Peso de la recompesna más allá de la demo.
       # gail: # Generative Adversarial Imitation Learning: Engañar al disc. a que las acciones que realiza provienen de la demo.
       #   gamma: 0.99 # A más alto, da mas importancia al aprendizaje actual que al de los ficheros.
       #   strength: 0.8 # Impacto
       #   demo_path: demo200326/demo14.demo
       #   use_vail: false # <--- Agrégalo explícitamente como falso
     behavioral_cloning: # Copia exactamente lo que hay en la demo.
-      strength: 0.8
-      demo_path: demo200326/demo21.demo
+      strength: 1.0
+      demo_path: demo200326/demo22.demo
+      steps: 500000 # Steps que durará el BC
       # steps: 100000 #
     keep_checkpoints: 5
     max_steps: 10000000 # Ciclos observación/acción/observación que el agente realiza antes de finalizar el entrenamiento.

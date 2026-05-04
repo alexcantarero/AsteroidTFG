@@ -159,14 +159,14 @@ public class testingAgent : Agent {
         {
             if (gun != null) gun.ShootPrimary(); //Si la arma se ha asignado bien, disparamos.
             currentGunDelay = primaryGunDelay; //Asignamos el cooldown referente al disparo realizado
-            //AddReward(-0.005f); //Penalización mínima por disparar. Así disparará lo mínimo posible.
+            AddReward(-0.005f); //Penalización mínima por disparar. Así disparará lo mínimo posible.
 
         }
         else if (shootAction == 2 && currentGunDelay <= 0f) //Idem pero para el disparo secundario
         {
             if (gun != null) gun.ShootSecondary();
             currentGunDelay = secondaryGunDelay;
-            //AddReward(-0.005f); 
+            AddReward(-0.005f); 
         }
     }
     public override void Heuristic(in ActionBuffers actionsOut) // Con esta función seremos capaces de controlar manualmente a la nave y así generar la demo. Toca trasladar todo el playerMovement aquí :(
