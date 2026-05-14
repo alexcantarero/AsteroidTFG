@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
@@ -6,9 +7,10 @@ using Unity.MLAgents.Sensors;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class testingAgent : Agent {
-
+public class testingAgent : Agent
+{
 
     //Collect observations. How the agent observes the environment.
     //The idea here is to choose which information must the agent know. I want to train it to just avoid meteors. 
@@ -21,6 +23,13 @@ public class testingAgent : Agent {
     [SerializeField] private AudioClip respawnSFX;
     [SerializeField] private AudioClip explosionSFX;
 
+    // UI indicator to show closest asteroid on screen
+    [Header("Debug UI (optional)")]
+    [Tooltip("A small UI Image RectTransform that will be moved to point at the closest asteroid.")]
+    [SerializeField] private RectTransform closestIndicator;
+    [Tooltip("Canvas that contains the indicator (Screen Space - Overlay or Screen Space - Camera).")]
+    [SerializeField] private Canvas uiCanvas;
+
     [Header("Parámetros")]
     [SerializeField] private float acceleration = 6f;
     [SerializeField] private float deceleration = 8f;
@@ -31,6 +40,12 @@ public class testingAgent : Agent {
     [SerializeField] private GameObject hurt;
     [SerializeField] private bool invincible;
 
+    // Gizmo debug options
+    [Header("Gizmos Debug (Scene view)")]
+    [Tooltip("Draw gizmo marking the closest asteroid and a line to it in the Scene view.")]
+    [SerializeField] private bool drawClosestGizmo = true;
+    [SerializeField] private Color gizmoColor = Color.yellow;
+    [SerializeField] private float gizmoRadius = 0.25f;
 
     Rigidbody2D rb;
     Animator anim;
@@ -39,6 +54,10 @@ public class testingAgent : Agent {
     private Vector2 velocity;
     private Vector3 playerInitialPosition;
 
+    // config for indicator clamping
+    private RectTransform canvasRect;
+    [SerializeField] private float edgePadding = 10f; // px padding when clamping to edge
+    [SerializeField] private float maxAsteroidObserveDistance = 18.868f; // used previously for normalization
 
     private void Start()
     {
@@ -49,14 +68,18 @@ public class testingAgent : Agent {
         velocity = Vector2.zero;
         playerInitialPosition = transform.position;
         invincible = false;
+
+        if (uiCanvas != null) canvasRect = uiCanvas.GetComponent<RectTransform>();
+        if (closestIndicator != null) closestIndicator.gameObject.SetActive(false);
     }
+
     public override void OnEpisodeBegin() //Función que se ejecuta una vez empieza un episodio.
     {
         Debug.Log("episodio comenso");
 
         transform.position = playerInitialPosition; //En este caso, lo que queremos es que la nave vuelva a la posición inicial. 
         velocity = Vector2.zero;
-        targetTransform.position = new Vector3(Random.Range(playerInitialPosition.x-8,playerInitialPosition.x+8), Random.Range(playerInitialPosition.y-4,playerInitialPosition.y+4), 0);
+        targetTransform.position = new Vector3(Random.Range(playerInitialPosition.x - 8, playerInitialPosition.x + 8), Random.Range(playerInitialPosition.y - 4, playerInitialPosition.y + 4), 0);
     }
 
     public override void CollectObservations(VectorSensor sensor) //Esta función añade al vector sensor aquellas observaciones relevantes para el modelo. 
@@ -74,7 +97,7 @@ public class testingAgent : Agent {
 
             float dist = Vector2.Distance(closestAsteroid.position, transform.position);
             //Debug.Log("Distance to it: " + dist);
-            sensor.AddObservation(dist); //Distancia al asteroide más cercano. (1)
+            sensor.AddObservation(dist / maxAsteroidObserveDistance); //Distancia al asteroide más cercano (normalizada) (1)
 
             Rigidbody2D targetRb = closestAsteroid.GetComponent<Rigidbody2D>();
 
@@ -94,10 +117,58 @@ public class testingAgent : Agent {
         {
             sensor.AddObservation(Vector2.zero); // No hay asteroides
             sensor.AddObservation(0f); //No hay ninguno así que distancia cero. 
+        }
+    }
 
+    // New: update indicator every frame
+    private void Update()
+    {
+        UpdateClosestIndicator();
+    }
+
+    private void UpdateClosestIndicator()
+    {
+        if (closestIndicator == null || uiCanvas == null) return;
+
+        Transform closest = GetClosestAsteroid();
+        if (closest == null)
+        {
+            closestIndicator.gameObject.SetActive(false);
+            return;
         }
 
+        Camera cam = uiCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? Camera.main : uiCanvas.worldCamera ?? Camera.main;
+        Vector3 screenPos = cam.WorldToScreenPoint(closest.position);
 
+        // if asteroid is behind camera, hide indicator
+        if (screenPos.z < 0f)
+        {
+            closestIndicator.gameObject.SetActive(false);
+            return;
+        }
+
+        // Convert to canvas local coordinates
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPos, cam, out localPoint);
+
+        // Check if on-screen in screen coords
+        bool onScreen = screenPos.x >= 0 && screenPos.x <= Screen.width && screenPos.y >= 0 && screenPos.y <= Screen.height;
+
+        // Clamp to canvas edges if off-screen
+        Rect rect = canvasRect.rect;
+        if (!onScreen)
+        {
+            localPoint.x = Mathf.Clamp(localPoint.x, rect.xMin + edgePadding, rect.xMax - edgePadding);
+            localPoint.y = Mathf.Clamp(localPoint.y, rect.yMin + edgePadding, rect.yMax - edgePadding);
+        }
+
+        closestIndicator.anchoredPosition = localPoint;
+        closestIndicator.gameObject.SetActive(true);
+
+        // Rotate indicator to point toward asteroid (optional). Calculate direction in world space and convert to UI rotation.
+        Vector3 dirWorld = (closest.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dirWorld.y, dirWorld.x) * Mathf.Rad2Deg - 90f; // -90 to align up vector
+        closestIndicator.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -146,12 +217,12 @@ public class testingAgent : Agent {
         if (rotateAction == 1)
         {
             transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime); //Negativo en 2D en Z es hacia la derecha.
-            //AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
+            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
         }
         else if (rotateAction == 2)
         {
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-            //AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
+            AddReward(-0.0005f); //Penalización mínima por rotar. Así rotará lo mínimo para llegar al target.
         }
 
         int shootAction = actions.DiscreteActions[2];
@@ -166,7 +237,7 @@ public class testingAgent : Agent {
         {
             if (gun != null) gun.ShootSecondary();
             currentGunDelay = secondaryGunDelay;
-            AddReward(-0.005f); 
+            AddReward(-0.005f);
         }
     }
     public override void Heuristic(in ActionBuffers actionsOut) // Con esta función seremos capaces de controlar manualmente a la nave y así generar la demo. Toca trasladar todo el playerMovement aquí :(
@@ -184,11 +255,11 @@ public class testingAgent : Agent {
         // Rotación
         discreteActions[1] = 0; //Inicializamos a que no se mueve ni a izquierda ni a derecha
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) 
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             discreteActions[1] = 2; //Giro a la izquierda
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             discreteActions[1] = 1; //Giro a la derecha
         }
@@ -212,19 +283,13 @@ public class testingAgent : Agent {
     {
         if (collision.collider.CompareTag("Limit"))
         {
-            AddReward(-0.001f);
+            AddReward(-0.1f);
             Debug.Log("Limite");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Target")){
-            AddReward(1f);
-            Debug.Log("Target");
-            EndEpisode(); //Episode ends.
-        }
-
         if (collision.CompareTag("Asteroid") && !invincible)
         {
             gameManager.GetComponent<GameManager>().getHurt();
@@ -233,7 +298,6 @@ public class testingAgent : Agent {
             HurtParticles();
             Destroy(collision.gameObject);
         }
-
     }
 
     // Función para encontrar el asteroide más cercano
@@ -244,6 +308,8 @@ public class testingAgent : Agent {
 
         float minDistance = Mathf.Infinity; //Inicializamos una distancia infinita (por ahora!)
         Transform closest = null;
+
+        if (areaParent == null) return null;
 
         foreach (Transform t in areaParent) //Para todo transform dentro del WorkEnv...
         {
@@ -259,6 +325,24 @@ public class testingAgent : Agent {
         }
         return closest; //Devolvemos el transform más pequeño.
     }
+
+    // Draw gizmos in the Scene view for the closest asteroid (optional)
+    private void OnDrawGizmos()
+    {
+        if (!drawClosestGizmo) return;
+
+        // avoid errors in edit mode
+        if (!Application.isPlaying && transform == null) return;
+
+        Transform closest = GetClosestAsteroid();
+        if (closest == null) return;
+
+        Gizmos.color = gizmoColor;
+        // draw a small wire sphere at the asteroid and a line from agent to asteroid
+        Gizmos.DrawWireSphere(closest.position, gizmoRadius);
+        Gizmos.DrawLine(transform.position, closest.position);
+    }
+
     public void Respawn()
     {
         SFXManager.instance.PlaySFX(respawnSFX, 0.125f);

@@ -73,7 +73,7 @@ public class asteroidBehavior : MonoBehaviour
             //Comprobamos si es un bullet normal o uno de los del disparo secundario. 
             if (bullet.name.Equals("roundBullet(Clone)"))
             {
-               bullet.GetComponent<secondaryBulletBehavior>().testingAgent.AddReward(0.5f);
+               bullet.GetComponent<secondaryBulletBehavior>().testingAgent.AddReward(1.0f);
                GameObject gameManager = bullet.GetComponent<secondaryBulletBehavior>().testingAgent.gameManager; //Añadimos los puntos al marcador.
                gameManager.GetComponent<GameManager>().addPoints(name);
 
@@ -81,7 +81,7 @@ public class asteroidBehavior : MonoBehaviour
             }
             else if (bullet.name.Equals("bullet(Clone)"))
             {
-                bullet.GetComponent<bulletBehavior>().testingAgent.AddReward(0.5f);
+                bullet.GetComponent<bulletBehavior>().testingAgent.AddReward(1.0f);
                 GameObject gameManager = bullet.GetComponent<bulletBehavior>().testingAgent.gameManager; //Añadimos los puntos al marcador.
                 gameManager.GetComponent<GameManager>().addPoints(name);
                 Debug.Log("Reward added for destroying asteroid! PRIMARY");
@@ -92,10 +92,10 @@ public class asteroidBehavior : MonoBehaviour
             if (name == "big(Clone)" || name == "medium(Clone)")
             {
                 
-                GameObject ast1 = Instantiate(subAsteroids[0], gameObject.transform.position, Quaternion.identity);
+                GameObject ast1 = Instantiate(subAsteroids[0], gameObject.transform.position, Quaternion.identity, transform.parent);
                 ast1.GetComponent<asteroidBehavior>().haveIBeenDestroyed = true;
 
-                GameObject ast2 = Instantiate(subAsteroids[1], gameObject.transform.position, Quaternion.identity);
+                GameObject ast2 = Instantiate(subAsteroids[1], gameObject.transform.position, Quaternion.identity, transform.parent);
                 ast2.GetComponent<asteroidBehavior>().haveIBeenDestroyed = true;
 
             }
