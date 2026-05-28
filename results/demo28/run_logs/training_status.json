@@ -1,0 +1,20 @@
+{
+    "testingAgent": {
+        "checkpoints": [
+            {
+                "steps": 499200,
+                "file_path": "results\\demo28\\testingAgent\\testingAgent-499200.onnx",
+                "reward": -5.975667844216029,
+                "creation_time": 1778783927.0439107,
+                "auxillary_file_paths": [
+                    "results\\demo28\\testingAgent\\testingAgent-499200.pt"
+                ]
+            }
+        ]
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.11.0+cu115"
+    }
+}
