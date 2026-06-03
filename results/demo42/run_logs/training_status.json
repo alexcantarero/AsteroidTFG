@@ -1,0 +1,47 @@
+{
+    "testingAgent": {
+        "checkpoints": [
+            {
+                "steps": 499586,
+                "file_path": "results\\demo42\\testingAgent\\testingAgent-499586.onnx",
+                "reward": null,
+                "creation_time": 1779128434.0093966,
+                "auxillary_file_paths": [
+                    "results\\demo42\\testingAgent\\testingAgent-499586.pt"
+                ]
+            },
+            {
+                "steps": 999349,
+                "file_path": "results\\demo42\\testingAgent\\testingAgent-999349.onnx",
+                "reward": 53.615747690200806,
+                "creation_time": 1779130200.1201963,
+                "auxillary_file_paths": [
+                    "results\\demo42\\testingAgent\\testingAgent-999349.pt"
+                ]
+            },
+            {
+                "steps": 1000349,
+                "file_path": "results\\demo42\\testingAgent\\testingAgent-1000349.onnx",
+                "reward": 53.615747690200806,
+                "creation_time": 1779130200.3564298,
+                "auxillary_file_paths": [
+                    "results\\demo42\\testingAgent\\testingAgent-1000349.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000349,
+            "file_path": "results\\demo42\\testingAgent.onnx",
+            "reward": 53.615747690200806,
+            "creation_time": 1779130200.3564298,
+            "auxillary_file_paths": [
+                "results\\demo42\\testingAgent\\testingAgent-1000349.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.11.0+cu115"
+    }
+}
