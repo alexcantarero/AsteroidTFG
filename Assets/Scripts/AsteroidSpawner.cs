@@ -49,9 +49,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     internal void resetDifficulty()
     {
-
         spawnCooldown = 3f;
-    
     
     }
 }

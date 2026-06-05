@@ -81,7 +81,7 @@ public class asteroidBehavior : MonoBehaviour
             }
             else if (bullet.name.Equals("bullet(Clone)"))
             {
-                bullet.GetComponent<bulletBehavior>().testingAgent.AddReward(1.0f);
+                bullet.GetComponent<bulletBehavior>().testingAgent.AddReward(0.5f);
                 GameObject gameManager = bullet.GetComponent<bulletBehavior>().testingAgent.gameManager; //Añadimos los puntos al marcador.
                 gameManager.GetComponent<GameManager>().addPoints(name);
                 Debug.Log("Reward added for destroying asteroid! PRIMARY");

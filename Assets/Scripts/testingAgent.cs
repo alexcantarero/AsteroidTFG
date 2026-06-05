@@ -96,7 +96,7 @@ public class testingAgent : Agent
             sensor.AddObservation((Vector2)transform.InverseTransformDirection(dirToTarget)); //Dirección local hacia el asteroide. (2)
 
             float dist = Vector2.Distance(closestAsteroid.position, transform.position);
-            //Debug.Log("Distance to it: " + dist);
+            //Debug.Log("Distance to closest asteroid: " + dist / maxAsteroidObserveDistance);
             sensor.AddObservation(dist / maxAsteroidObserveDistance); //Distancia al asteroide más cercano (normalizada) (1)
 
             Rigidbody2D targetRb = closestAsteroid.GetComponent<Rigidbody2D>();
@@ -173,6 +173,8 @@ public class testingAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        if (invincible) return;
+        AddReward(0.001f);
 
         if (currentGunDelay > 0f) currentGunDelay -= Time.deltaTime;
         if (currentGunDelay < 0f) currentGunDelay = 0f;
@@ -283,7 +285,7 @@ public class testingAgent : Agent
     {
         if (collision.collider.CompareTag("Limit"))
         {
-            AddReward(-0.1f);
+            AddReward(-0.5f);
             Debug.Log("Limite");
         }
     }
@@ -292,9 +294,10 @@ public class testingAgent : Agent
     {
         if (collision.CompareTag("Asteroid") && !invincible)
         {
+            invincible = true;
             gameManager.GetComponent<GameManager>().getHurt();
             Debug.Log("Asteroide");
-            AddReward(-0.5f);
+            AddReward(-1.0f);
             HurtParticles();
             Destroy(collision.gameObject);
         }
@@ -362,7 +365,6 @@ public class testingAgent : Agent
     private IEnumerator HurtAnimation()
     {
         anim.SetBool("isHurt", true);
-        invincible = true;
         yield return new WaitForSeconds(1f);
         anim.SetBool("isHurt", false);
         invincible = false;

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public CameraShake cameraShake;
 
     [SerializeField] Animator playerAnimator;
-    [SerializeField] BoxCollider2D playerBoxCollider2D;
+    [SerializeField] CircleCollider2D playerCircleCollider2D;
 
 
     private void Awake()
@@ -130,14 +130,14 @@ public class GameManager : MonoBehaviour
     {
         //player.SetActive(false);
         playerAnimator.SetBool("collisioned", true);
-        playerBoxCollider2D.enabled = false;
+        playerCircleCollider2D.enabled = false;
         cameraShake.shake = true;
         yield return new WaitForSeconds(0.3f);
         cameraShake.shake = false;
         yield return new WaitForSeconds(1.7f);
         //player.SetActive(true);
         playerAnimator.SetBool("collisioned", false);
-        playerBoxCollider2D.enabled = true;
+        playerCircleCollider2D.enabled = true;
         if (player.GetComponent<PlayerMovement>().enabled) player.GetComponent<PlayerMovement>().respawn();
         else if (player.GetComponent<testingAgent>().enabled) player.GetComponent<testingAgent>().Respawn();
         SFXManager.instance.PlaySFX(respawnSFX, 0.125f);
@@ -150,12 +150,13 @@ public class GameManager : MonoBehaviour
     {
         // Cambio de dificultad
         if (score >= 5000)
-        { 
+        {
             SetDifficulty(Difficulty.God);
             DifficultyText.text = "<sketchy>God";
             DifficultyText.color = new Color32(255, 57, 81, 255);
         }
-        else if (score >= 4000) {
+        else if (score >= 4000)
+        {
             SetDifficulty(Difficulty.Impossible);
             DifficultyText.text = "<sketchy>Impossible";
             DifficultyText.color = new Color32(194, 136, 255, 255);
